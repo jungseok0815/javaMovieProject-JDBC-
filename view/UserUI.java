@@ -21,10 +21,7 @@ public class UserUI extends UserController {
             switch (num) {
                 case 1:
                     super.showMovieList();
-                    System.out.println("예매할 영확를 선택해주새요");
-                    System.out.println("입력 : ");
-                    int num1 = sc.nextInt();
-                    movieReservation(num1);
+                    firuserUi();
                     break;
                 case 2:
 
@@ -37,6 +34,15 @@ public class UserUI extends UserController {
             }
         }
     }
+
+    public void firuserUi(){
+        System.out.println("예매할 영확를 선택해주새요");
+        System.out.print("입력 : ");
+        int num1 = sc.nextInt();
+        movieReservation(num1);
+    }
+
+
 
 
 

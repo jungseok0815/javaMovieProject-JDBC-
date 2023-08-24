@@ -6,16 +6,34 @@ public class Moviekiosk {
     protected String movieName;
     protected int price;
     protected int runningTime;
-    protected int MovieSeat;
+    public int[] MovieSeat;
 
     protected ArrayList<Moviekiosk> movieList= new ArrayList<>();
 
-    public Moviekiosk(){}
-    public Moviekiosk(String movieName, int price, int runningTime,int MovieSeat){
+    public void moarry(){
+        movieList.add(new Moviekiosk("아바타",2300, 180 ,new int[40]));
+        movieList.add(new Moviekiosk("어벤져스",2500, 150 ,new int[30]));
+        movieList.add(new Moviekiosk("인터스텔라",3000, 180,new int[50]));
+    }
+    public Moviekiosk(){
+        moarry();
+    }
+    public Moviekiosk(String movieName, int price, int runningTime,int[] MovieSeat){
         this.movieName = movieName;
         this.price = price;
         this.runningTime = runningTime;
         this.MovieSeat=MovieSeat;
+        for (int i = 0; i< this.MovieSeat.length; i++){
+            this.MovieSeat[i] = i+1;
+        }
+    }
+
+    public int[] getMovieSeat() {
+        return MovieSeat;
+    }
+
+    public void setMovieSeat(int[] movieSeat) {
+        MovieSeat = movieSeat;
     }
 
     public String getMovieName() {
@@ -45,13 +63,11 @@ public class Moviekiosk {
     public ArrayList<Moviekiosk> getMovieList() {
         return movieList;
     }
-    public void setMovieList(ArrayList<Moviekiosk> movieList) {
-        this.movieList = movieList;
-    }
+
 
     public void showMovieList(){
         int i =1;
-        for (Moviekiosk m1 : movieList){
+        for (Moviekiosk m1 : this.movieList){
             System.out.println(i+" "+m1.toString());
             i++;
         }

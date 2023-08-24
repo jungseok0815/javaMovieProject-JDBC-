@@ -13,8 +13,9 @@ public class ManagerController extends Manager implements ManagerInterface {
     @Override
     public boolean checkpassword(String password){return password.equals(this.getPassword());}
     @Override
-    public void addMovie(String name, int price, int runningTime,int movieSeat){
-        super.getMovieList().add(new Manager(name,price,runningTime,movieSeat));
+    public void addMovie(String name, int price, int runningTime,int[] movieSeat){
+        super.movieList.add(new Manager(name,price,runningTime,movieSeat));
+
         System.out.println("성공적으로 영화 등록이 완료되었습니다.");
     }
     @Override
@@ -26,4 +27,6 @@ public class ManagerController extends Manager implements ManagerInterface {
     public void insertMovie(Manager indexToModify, int newValue){
         super.getMovieList().set(newValue-1,indexToModify);
     }
+
+
 }

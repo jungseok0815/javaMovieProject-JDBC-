@@ -8,7 +8,7 @@ public class Manager extends Moviekiosk{
     public Manager(){
 
     }
-    public Manager(String moviename, int prive, int runningTime,int movieSeat ){
+    public Manager(String moviename, int prive, int runningTime,int[] movieSeat ){
         super(moviename,prive,runningTime,movieSeat);
     }
 

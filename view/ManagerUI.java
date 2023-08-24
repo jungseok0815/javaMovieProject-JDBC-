@@ -40,7 +40,7 @@ public class ManagerUI extends ManagerController{
                     int runningTime = sc.nextInt();
                     System.out.print("4. 영화관람 자리 수 ");
                     int movieSeat = sc.nextInt();
-                    super.addMovie(movieName, price, runningTime, movieSeat);
+                    super.addMovie(movieName, price, runningTime, new int[movieSeat]);
                     break;
                 case 2:
                     super.showMovieList();
@@ -54,16 +54,20 @@ public class ManagerUI extends ManagerController{
                     System.out.print("입력: ");
                     int num2 = sc.nextInt();
                     System.out.println("수정영화 이름: ");
+                    String str1 = sc.next();
                     System.out.println("수정영화 가격");
+                    int num4 = sc.nextInt();
                     System.out.println("수정 러닝타임");
+                    int num5 = sc.nextInt();
                     System.out.println("수정 영화관람 자리수");
-                    super.insertMovie(new Manager(sc.next(), sc.nextInt(), sc.nextInt(),sc.nextInt()), num2);
+                    int num6 = sc.nextInt();
+                    super.insertMovie(new Manager(str1, num4, num5,new int[num6]),num2);
                     break;
                 case 4:
                     super.showMovieList();
                     break;
                 case 5:
-                    tf = false;;
+                    tf = false;
                     break;
                 default:
                    return;

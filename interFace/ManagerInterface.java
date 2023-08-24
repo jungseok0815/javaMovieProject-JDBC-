@@ -9,7 +9,7 @@ public interface ManagerInterface {
     boolean checkId(String id);
     boolean checkpassword(String password);
     //관리자모드에서 영화 추가
-    void addMovie(String name, int price, int runningTime,int movieSeat);
+    void addMovie(String name, int price, int runningTime,int[] movieSeat);
     //영화 수정
     void insertMovie(Manager indexToModify, int newValue);
     //영화 삭제
