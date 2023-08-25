@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class UserController extends User implements UserInterface {
     Scanner sc = new Scanner(System.in);
-    public UserController(String name, int money, int age){
-        super(name, money,age);
+    public UserController(String name, int age){
+        super(name,age);
     }
     public UserController(){}
     @Override
@@ -17,10 +17,9 @@ public class UserController extends User implements UserInterface {
         System.out.print("y/n를 입력해주세요");
         char a = sc.next().charAt(0);
         if (a == 'y'){
+            createUserInfo();
             showSeat(num-1);
-            System.out.println("\n자리를 선택해주세요: ");
-            int num2 = sc.nextInt(); //예외처리
-            choiceSeat(num-1,num2);
+
         } else{
             System.out.println("영화 예매가 취소되었습니다.");
         }
@@ -40,6 +39,10 @@ public class UserController extends User implements UserInterface {
             }
         }
         System.out.println("====================================");
+        System.out.println("\n자리를 선택해주세요: ");
+        int num2 = sc.nextInt(); //예외처리
+        choiceSeat(num-1,num2);
+
     }
 
     public void choiceSeat(int num, int num2){
@@ -47,12 +50,15 @@ public class UserController extends User implements UserInterface {
         showSeat(num);
         System.out.println("영화 예매가 완료되었습니다.");
     }
-
-    public boolean checkReservation(int num){
-        int restMoney = this.money - super.movieList.get(num).getPrice();
-        if ( restMoney >= 0){ super.setMoney(restMoney); return true;}
-        else {return false;}
+    public void createUserInfo(){
+        System.out.println("사용자 정보를 입력해주세요");
+        System.out.println("이름 : ");
+        String name = sc.next();
+        System.out.println("나이 : ");
+        int age = sc.nextInt();
+        super.userInfo.add(new User(name, age));
     }
+
 
     public void createReservationnum(){
 

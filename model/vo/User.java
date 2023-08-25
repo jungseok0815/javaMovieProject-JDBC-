@@ -1,20 +1,20 @@
 package com.kh.movie.model.vo;
 
+import java.util.ArrayList;
+
 public class User extends Moviekiosk{
     protected String name;
-    protected int money;
     protected int age;
 
     public User(){
 
     }
 
-    public User(String name, int money, int age){
+    public User(String name,  int age){
         this.age =age;
-        this.money =money;
         this.name = name;
     }
-
+    protected ArrayList<User> userInfo= new ArrayList<>();
 
     public String getName() {
         return name;
@@ -22,12 +22,6 @@ public class User extends Moviekiosk{
 
     public void setName(String name) {
         this.name = name;
-    }
-    public int getMoney() {
-        return money;
-    }
-    public void setMoney(int money) {
-        this.money = money;
     }
 
     public int getAge() {
