@@ -1,13 +1,11 @@
 package com.kh.movie.view;
-import com.kh.movie.interFace.MainInterface;
-import com.kh.movie.model.vo.User;
 import java.util.Scanner;
 
 public class MainUI  {
 
     Scanner sc = new Scanner(System.in);
-    ManagerUI mui = new ManagerUI();
-    UserUI ue1 = new UserUI();
+    ManagerModeUI mui = new ManagerModeUI();
+    UserModeUI ue1 = new UserModeUI();
 
     public MainUI(){
         showMainInfo();

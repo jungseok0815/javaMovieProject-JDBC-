@@ -1,6 +1,6 @@
 package com.kh.movie.interFace;
 
-import com.kh.movie.model.vo.Manager;
+import com.kh.movie.model.vo.ManagerMode;
 
 public interface ManagerInterface {
 
@@ -11,7 +11,7 @@ public interface ManagerInterface {
     //관리자모드에서 영화 추가
     void addMovie(String name, int price, int runningTime,int[] movieSeat);
     //영화 수정
-    void insertMovie(Manager indexToModify, int newValue);
+    void insertMovie(ManagerMode indexToModify, int newValue);
     //영화 삭제
     void delectMovie(int num);
 }

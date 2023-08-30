@@ -1,14 +1,14 @@
 package com.kh.movie.model.vo;
 
-public class Manager extends Moviekiosk{
+public class ManagerMode extends Moviekiosk{
 
     private final String id = "kil15978";
     private final String password = "kil79518";
 
-    public Manager(){
+    public ManagerMode(){
 
     }
-    public Manager(String moviename, int prive, int runningTime,int[] movieSeat ){
+    public ManagerMode(String moviename, int prive, int runningTime, int[] movieSeat ){
         super(moviename,prive,runningTime,movieSeat);
     }
 

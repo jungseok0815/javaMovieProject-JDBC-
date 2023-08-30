@@ -1,12 +1,15 @@
 package com.kh.movie.view;
-import com.kh.movie.controller.UserController;
-import com.kh.movie.model.vo.Manager;
+import com.kh.movie.controller.UserModeController;
+import com.kh.movie.model.vo.Moviekiosk;
 
 import java.util.Scanner;
 
-public class UserUI extends UserController {
+public class UserModeUI{
 
-    public UserUI(){
+    UserModeController a1 = new UserModeController();
+    Moviekiosk mov = new Moviekiosk();
+
+    public UserModeUI(){
 
     }
     Scanner sc = new Scanner(System.in);
@@ -20,11 +23,11 @@ public class UserUI extends UserController {
             int num = sc.nextInt();
             switch (num) {
                 case 1:
-                    super.showMovieList();
+                    mov.showMovieList();
                     firuserUi();
                     break;
                 case 2:
-
+                    a1.createReservationnum();
                     break;
                 case 5:
                     tf = false;;
@@ -39,7 +42,7 @@ public class UserUI extends UserController {
         System.out.println("예매할 영확를 선택해주새요");
         System.out.print("입력 : ");
         int num1 = sc.nextInt();
-        movieReservation(num1);
+        a1.movieReservation(num1);
     }
 
 

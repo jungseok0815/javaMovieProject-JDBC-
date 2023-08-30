@@ -1,9 +1,9 @@
 package com.kh.movie.view;
-import com.kh.movie.controller.ManagerController;
-import com.kh.movie.model.vo.Manager;
+import com.kh.movie.controller.ManagerModeController;
+import com.kh.movie.model.vo.ManagerMode;
 
 import java.util.*;
-public class ManagerUI extends ManagerController{
+public class ManagerModeUI extends ManagerModeController {
     Scanner sc = new Scanner(System.in);
 
     public void showManagerLogin(){
@@ -61,7 +61,7 @@ public class ManagerUI extends ManagerController{
                     int num5 = sc.nextInt();
                     System.out.println("수정 영화관람 자리수");
                     int num6 = sc.nextInt();
-                    super.insertMovie(new Manager(str1, num4, num5,new int[num6]),num2);
+                    super.insertMovie(new ManagerMode(str1, num4, num5,new int[num6]),num2);
                     break;
                 case 4:
                     super.showMovieList();

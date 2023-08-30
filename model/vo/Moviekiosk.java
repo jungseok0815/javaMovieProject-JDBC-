@@ -18,6 +18,7 @@ public class Moviekiosk {
     public Moviekiosk(){
         moarry();
     }
+
     public Moviekiosk(String movieName, int price, int runningTime,int[] MovieSeat){
         this.movieName = movieName;
         this.price = price;
