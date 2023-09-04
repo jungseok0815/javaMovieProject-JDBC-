@@ -3,26 +3,23 @@ package com.kh.movie.model.vo;
 import java.util.ArrayList;
 
 public class UserMode extends Moviekiosk{
-    protected String name;
-    protected int age;
-    String movieName;
-    public UserMode(){
-        defualtuserInfo();
-    }
-    public void defualtuserInfo(){
-        userInfo.add(new UserMode("차정석", 18, "인터스텔라"));
-        userInfo.add(new UserMode("박찬준", 28, "인터스텔라"));
-        userInfo.add(new UserMode("유명준", 15, "인터스텔라"));
-        userInfo.add(new UserMode("이경택", 25, "인터스텔라"));
-    }
+    private String name;
+    private int age;
+    private String movieName;
 
     public UserMode(String name, int age, String movieName){
         this.age =age;
         this.name = name;
         this.movieName = movieName;
     }
-    protected ArrayList<UserMode> userInfo= new ArrayList<>();
+    public UserMode(){
 
+    };
+
+    @Override
+    public String getMovieName() {
+        return movieName;
+    }
     public String getName() {
         return name;
     }
@@ -37,15 +34,6 @@ public class UserMode extends Moviekiosk{
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-
-    public ArrayList<UserMode> getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(ArrayList<UserMode> userInfo) {
-        this.userInfo = userInfo;
     }
 
     @Override

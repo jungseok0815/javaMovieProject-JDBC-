@@ -1,4 +1,6 @@
 package com.kh.movie.view;
+import com.kh.movie.model.vo.Moviekiosk;
+
 import java.util.Scanner;
 
 public class MainUI  {
@@ -7,10 +9,13 @@ public class MainUI  {
     ManagerModeUI mui = new ManagerModeUI();
     UserModeUI ue1 = new UserModeUI();
 
+
     public MainUI(){
         showMainInfo();
     }
     public void showMainInfo(){
+        Moviekiosk.defualtmoarry();
+        Moviekiosk.defualtuserInfo();
         boolean tf = true;
         while (tf) {
             System.out.println("============영화관 키오스크 ============");

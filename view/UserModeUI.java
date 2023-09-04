@@ -24,10 +24,20 @@ public class UserModeUI{
             switch (num) {
                 case 1:
                     mov.showMovieList();
-                    firuserUi();
+                    System.out.println("예매할 영확를 선택해주새요");
+                    System.out.print("입력 : ");
+                    int num1 = sc.nextInt();
+                    a1.movieReservation(num1);
                     break;
                 case 2:
-                    a1.createReservationnum();
+                    System.out.println("예약 영화, 이름, 나이를 입력해주세요");
+                    System.out.println("영화제목: ");
+                    String movieName = sc.next();
+                    System.out.println("이름 : ");
+                    String name = sc.next();
+                    System.out.println("나이 : ");
+                    int age = sc.nextInt();
+                    a1.movieinquiry(movieName, name,age);
                     break;
                 case 5:
                     tf = false;;
@@ -37,20 +47,6 @@ public class UserModeUI{
             }
         }
     }
-
-    public void firuserUi(){
-        System.out.println("예매할 영확를 선택해주새요");
-        System.out.print("입력 : ");
-        int num1 = sc.nextInt();
-        a1.movieReservation(num1);
-    }
-
-
-
-
-
-
-
 
 }
 

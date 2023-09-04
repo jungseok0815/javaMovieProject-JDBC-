@@ -1,74 +1,48 @@
 package com.kh.movie.model.vo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Moviekiosk {
+    protected String[] movieSeat;
     protected String movieName;
-    protected int price;
-    protected int runningTime;
-    public int[] MovieSeat;
 
-    protected ArrayList<Moviekiosk> movieList= new ArrayList<>();
+    private static ArrayList<ManagerMode> movieList= new ArrayList<>();
+    private static ArrayList<UserMode> userInfo= new ArrayList<>();
 
-    public void moarry(){
-        movieList.add(new Moviekiosk("아바타",2300, 180 ,new int[40]));
-        movieList.add(new Moviekiosk("어벤져스",2500, 150 ,new int[30]));
-        movieList.add(new Moviekiosk("인터스텔라",3000, 180,new int[50]));
-    }
-    public Moviekiosk(){
-        moarry();
+    public Moviekiosk(){};
+
+
+    public String[] getMovieSeat() {
+        return movieSeat;
     }
 
-    public Moviekiosk(String movieName, int price, int runningTime,int[] MovieSeat){
-        this.movieName = movieName;
-        this.price = price;
-        this.runningTime = runningTime;
-        this.MovieSeat=MovieSeat;
-        for (int i = 0; i< this.MovieSeat.length; i++){
-            this.MovieSeat[i] = i+1;
-        }
+    public static ArrayList<ManagerMode> getMovieList() {
+        return movieList;
     }
 
-    public int[] getMovieSeat() {
-        return MovieSeat;
+    public static ArrayList<UserMode> getUserInfo() {
+        return userInfo;
     }
 
-    public void setMovieSeat(int[] movieSeat) {
-        MovieSeat = movieSeat;
-    }
 
     public String getMovieName() {
         return movieName;
     }
 
-    public void setMovieName(String movieName) {
-        this.movieName = movieName;
+    public static void defualtmoarry(){ //기존에 등록되어 있는 영화
+        Moviekiosk.movieList.add(new ManagerMode("아바타",2300, 180 ,40));
+        Moviekiosk.movieList.add(new ManagerMode("어벤져스",2500, 150 ,30));
+        Moviekiosk.movieList.add(new ManagerMode("인터스텔라",3000, 180, 50));
     }
 
-    public int getPrice() {
-        return price;
-    }
+    public static void defualtuserInfo(){ // 기존에 등록되어있는 예약유저
 
-    public void setPrice(int price) {
-        this.price = price;
     }
-
-    public int getRunningTime() {
-        return runningTime;
-    }
-
-    public void setRunningTime(int runningTime) {
-        this.runningTime = runningTime;
-    }
-
-    public ArrayList<Moviekiosk> getMovieList() {
-        return movieList;
-    }
-
 
     public void showMovieList(){
         int i =1;
-        for (Moviekiosk m1 : this.movieList){
+        for (Moviekiosk m1 : Moviekiosk.movieList){
             System.out.println(i+" "+m1.toString());
             i++;
         }
@@ -76,7 +50,8 @@ public class Moviekiosk {
 
     @Override
     public String toString() {
-        return movieName + "가격 : "+price+ "러닝타임 : " + runningTime;
+        return "Moviekiosk{" +
+                "movieName='" + movieName + '\'' +
+                '}';
     }
-
 }
