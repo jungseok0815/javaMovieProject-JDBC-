@@ -1,31 +1,39 @@
 package com.kh.movie.model.vo;
 
 public class ManagerMode extends Moviekiosk{
-    protected int price;
-    protected int runningTime;
 
-    private final String id = "kil15978";
-    private final String password = "kil79518";
+    private String movieName;
+    private int seat;
+    private int runningTime;
 
-    public ManagerMode(){
+    public ManagerMode(String movieName, int seat, int runningTime) {
+        this.movieName = movieName;
+        this.seat = seat;
+        this.runningTime = runningTime;
     }
 
-    public ManagerMode(String movieName, int price, int runningTime, int num ){
-        super.movieName = movieName;
-        this.price = price;
-        this.runningTime =runningTime;
-        super.movieSeat = new String[num];
-
-        for (int i = 0; i< movieSeat.length; i++){
-            this.movieSeat[i] = "자리있음";
-        }
+    @Override
+    public String getMovieName() {
+        return movieName;
     }
 
-    public String getId() {
-        return id;
-    }
-    public String getPassword() {
-        return password;
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
     }
 
+    public int getSeat() {
+        return seat;
+    }
+
+    public void setSeat(int seat) {
+        this.seat = seat;
+    }
+
+    public int getRunningTime() {
+        return runningTime;
+    }
+
+    public void setRunningTime(int runningTime) {
+        this.runningTime = runningTime;
+    }
 }

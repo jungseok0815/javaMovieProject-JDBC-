@@ -4,28 +4,43 @@ import java.util.ArrayList;
 
 public class UserMode extends Moviekiosk{
     private String name;
+    private String userId;
+    private String userPwd;
     private int age;
-    private String movieName;
 
-    public UserMode(String name, int age, String movieName){
-        this.age =age;
+    public UserMode(String name, String userId, String userPwd, int age) {
         this.name = name;
-        this.movieName = movieName;
+        this.userId = userId;
+        this.userPwd = userPwd;
+        this.age = age;
     }
+
     public UserMode(){
 
-    };
-
-    @Override
-    public String getMovieName() {
-        return movieName;
     }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserPwd() {
+        return userPwd;
+    }
+
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
     }
 
     public int getAge() {
@@ -36,12 +51,5 @@ public class UserMode extends Moviekiosk{
         this.age = age;
     }
 
-    @Override
-    public String toString() {
-        return "UserMode{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", movieName='" + movieName + '\'' +
-                '}';
-    }
+
 }

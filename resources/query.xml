@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="insetMember">
+        Insert into member values(seq_userno.nextval, ?,?,?,?,?,?,?,?,?,sysdate)
+    </entry>
+    <entry key="selectList">
+        select * from Member order by username
+    </entry>
+    <entry key="seleteid">
+        select * from Member where userid =?
+    </entry>
+    <entry key="selectUserName">
+        select * from Member where username like ?
+    </entry>
+    <entry key="updaateMember">
+        update member set userPwd = ?,email =? ,phone=?,address=? where userid = ?
+    </entry>
+    <entry key="deleteUser">
+        delete member where userid = ?
+    </entry>
+</properties>
