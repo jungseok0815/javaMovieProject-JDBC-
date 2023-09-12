@@ -10,7 +10,10 @@ import java.util.Scanner;
 public class UserModeUI{
     Scanner sc = new Scanner(System.in);
     UserModeController a1 = new UserModeController();
-    Moviekiosk mov = new Moviekiosk();
+
+    UserMode user;
+
+
 
     public UserModeUI(){
 
@@ -25,7 +28,8 @@ public class UserModeUI{
             int num = sc.nextInt();
             switch (num) {
                 case 1:
-                    if (new UserModeController().loginUser(loginUser())){
+                    if (new UserModeController().loginUser(loginUser())!=null){
+                        user = new UserModeController().loginUser(loginUser());
                         successLoginUi();
                     }else {
                         tf = false;;
@@ -33,6 +37,9 @@ public class UserModeUI{
                     break;
                 case 2:
                     joinUser();
+                    break;
+                case 3:
+
                     break;
                 case 5:
                     tf = false;;
@@ -47,8 +54,8 @@ public class UserModeUI{
         boolean tf = true;
         while (tf) {
             System.out.println("1. 영화예약");
-            System.out.println("2. 에약검색");
-            System.out.println("3. 예약취소");
+            System.out.println("2. 예약취소");
+            System.out.println("3. 에약검색");
             System.out.println("4. 사용자 정보 변경");
             int num = sc.nextInt();
             switch (num) {
@@ -58,10 +65,13 @@ public class UserModeUI{
                     break;
                 case 2:
 
+                    new UserModeController().deleteReMovie(user.getUserId(),deleterReMocie());
                     break;
                 case 3:
-
+                    new UserModeController().seleteReservation(user.getUserId());
                     break;
+                case 4:
+
                 case 5:
                     tf = false;;
                     break;
@@ -72,7 +82,7 @@ public class UserModeUI{
     }
 
     /**
-     * 사용자의 정보를 입력받는 메소드
+     * 회원가입을 위해 필요한 정보들을 입력받는 메소드
      */
     public void joinUser(){
         System.out.print("회원 아이디: ");
@@ -86,6 +96,10 @@ public class UserModeUI{
         new UserModeController().createUser(userid,userPwd,userName,userAge);
     }
 
+    /**
+     * 로그인처리를 위해서 정보를 입력받는 메소드
+     * @return
+     */
     public String[] loginUser(){
         System.out.print("아이디 입력: ");
         String userid = sc.nextLine();
@@ -99,6 +113,10 @@ public class UserModeUI{
         return logininfo;
     }
 
+    /**
+     * 현재 등록되어있는 movieList전체를 가져와 화면에 띄우는 메소드
+     * @param showMovie
+     */
     public void showMovieList(ArrayList<ManagerMode> showMovie){
         if (showMovie == null){
             System.out.println("현재 등록된 영화가 존재하지 않습니다.");
@@ -109,13 +127,38 @@ public class UserModeUI{
         }
     }
 
+    /**
+     * 영화 예약을 위해서 영화를 입력받는 메소드
+     */
     public void reservation(){
         System.out.println("영화선택 : ");
         int num = sc.nextInt();
-        System.out.println("예약 id입력");
-        String userid = sc.nextLine();
-        new UserModeController().reservation(num,userid);
+        new UserModeController().reservation(num,user.getUserId());
     }
+
+    /**
+     * 예약내역을 전달받아서 화면에 출력하는 메소드
+     * @param showrReservationList
+     */
+    public void seleteReservation(ArrayList<String[]> showrReservationList){
+        if (showrReservationList == null){
+            System.out.println("예약 내역 없음.");
+        }else {
+            for (String[] i : showrReservationList){
+                System.out.println(i.toString());
+            }
+        }
+    }
+
+    public String deleterReMocie(){
+        System.out.println("삭제할 영화를 입력해주세여: ");
+        return sc.nextLine();
+    }
+
+
+
+
+
 
 
 
