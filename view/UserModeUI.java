@@ -1,7 +1,8 @@
 package com.kh.movie.view;
 import com.kh.movie.controller.UserModeController;
+import com.kh.movie.model.dao.UserDao;
 import com.kh.movie.model.vo.ManagerMode;
-import com.kh.movie.model.vo.Moviekiosk;
+import com.kh.movie.model.vo.Reservation;
 import com.kh.movie.model.vo.UserMode;
 
 import java.util.ArrayList;
@@ -9,163 +10,79 @@ import java.util.Scanner;
 
 public class UserModeUI{
     Scanner sc = new Scanner(System.in);
-    UserModeController a1 = new UserModeController();
-
-    UserMode user;
-
-
-
-    public UserModeUI(){
-
-    }
-
-    public void fistUserUi(){
-        boolean tf = true;
-        while (tf) {
-            System.out.println("1. 회원 로그인");
-            System.out.println("2. 회원가입");
-            System.out.println("5. 뒤로가기");
-            int num = sc.nextInt();
-            switch (num) {
-                case 1:
-                    if (new UserModeController().loginUser(loginUser())!=null){
-                        user = new UserModeController().loginUser(loginUser());
-                        successLoginUi();
-                    }else {
-                        tf = false;;
-                    }
-                    break;
-                case 2:
-                    joinUser();
-                    break;
-                case 3:
-
-                    break;
-                case 5:
-                    tf = false;;
-                    break;
-                default:
-                    return;
-            }
-        }
-    }
-
     public void successLoginUi(){
         boolean tf = true;
         while (tf) {
             System.out.println("1. 영화예약");
-            System.out.println("2. 예약취소");
-            System.out.println("3. 에약검색");
-            System.out.println("4. 사용자 정보 변경");
+            System.out.println("2. 예매검색");
+            System.out.println("3. 예매취소");
+            System.out.println("4. 관리자모드로 접근");
+            System.out.println("5. 로그아웃");
+            System.out.print("입력: ");
             int num = sc.nextInt();
             switch (num) {
                 case 1:
-                    new UserModeController().showMovie();
-                    reservation();
+                    if (new UserModeController().showMovie()){
+                        reservation();
+                    }else{
+                        return;
+                    }
                     break;
                 case 2:
-
-                    new UserModeController().deleteReMovie(user.getUserId(),deleterReMocie());
+                    new UserModeController().seleteReservation();
                     break;
                 case 3:
-                    new UserModeController().seleteReservation(user.getUserId());
+                    new UserModeController().seleteReservation();
+                    new UserModeController().deleteReMovie(deleterReMocie());
                     break;
                 case 4:
-
-                case 5:
-                    tf = false;;
+                    if (UserDao.m2.getGrade().equals("MANGER")){
+                        new ManagerModeUI().showManagerInfo();
+                    }else{
+                        System.out.println("일반 사용자는 접근할 수 없습니다.");
+                        break;
+                    }
                     break;
+                case 5:
+                    UserDao.m2 = null;
+                    System.out.println(UserDao.m2);
+                    return;
                 default:
                     return;
             }
         }
     }
 
-    /**
-     * 회원가입을 위해 필요한 정보들을 입력받는 메소드
-     */
-    public void joinUser(){
-        System.out.print("회원 아이디: ");
-        String userid = sc.nextLine();
-        System.out.print("회원 비밀번호 : ");
-        String userPwd = sc.nextLine();
-        System.out.print("회원 이름: ");
-        String userName = sc.nextLine();
-        System.out.print("회원 나이: ");
-        int userAge = sc.nextInt();
-        new UserModeController().createUser(userid,userPwd,userName,userAge);
-    }
-
-    /**
-     * 로그인처리를 위해서 정보를 입력받는 메소드
-     * @return
-     */
-    public String[] loginUser(){
-        System.out.print("아이디 입력: ");
-        String userid = sc.nextLine();
-        System.out.print("비밀번호 입력: ");
-        String userPwd = sc.nextLine();
-
-        String[] logininfo = new String[2];
-        logininfo[0] =userid;
-        logininfo[1] =userPwd;
-
-        return logininfo;
-    }
-
-    /**
-     * 현재 등록되어있는 movieList전체를 가져와 화면에 띄우는 메소드
-     * @param showMovie
-     */
-    public void showMovieList(ArrayList<ManagerMode> showMovie){
+    public boolean showMovieList(ArrayList<ManagerMode> showMovie){
         if (showMovie == null){
             System.out.println("현재 등록된 영화가 존재하지 않습니다.");
+            return false;
         }else {
             for (ManagerMode i : showMovie){
-                System.out.println(i.toString());
+                System.out.println(i.getMovieName() +",남은 자리는 : " + i.getSeat());
             }
+            return true;
+
         }
     }
-
-    /**
-     * 영화 예약을 위해서 영화를 입력받는 메소드
-     */
     public void reservation(){
-        System.out.println("영화선택 : ");
-        int num = sc.nextInt();
-        new UserModeController().reservation(num,user.getUserId());
+        System.out.println("예매할 영화 이름 입력 : ");
+        String rvMovieName = sc.next();
+        new UserModeController().reservation(rvMovieName);
     }
-
-    /**
-     * 예약내역을 전달받아서 화면에 출력하는 메소드
-     * @param showrReservationList
-     */
-    public void seleteReservation(ArrayList<String[]> showrReservationList){
+    public void seleteReservation(ArrayList<Reservation> showrReservationList){
         if (showrReservationList == null){
             System.out.println("예약 내역 없음.");
         }else {
-            for (String[] i : showrReservationList){
-                System.out.println(i.toString());
+            for (Reservation i : showrReservationList){
+                System.out.println(i.getUserName()+"님이 얘매하신 예매번호 "+i.getRvNum()+" 영화 : "+i.getMovieName());
             }
         }
     }
-
-    public String deleterReMocie(){
-        System.out.println("삭제할 영화를 입력해주세여: ");
-        return sc.nextLine();
+    public int deleterReMocie(){
+        System.out.println("삭제할 영화의 예매번호를 입력해주세요:  ");
+        return sc.nextInt();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

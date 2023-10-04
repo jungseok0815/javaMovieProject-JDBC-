@@ -1,18 +1,35 @@
 package com.kh.movie.model.vo;
 
-public class ManagerMode extends Moviekiosk{
+import java.util.Date;
+
+public class ManagerMode{
 
     private String movieName;
     private int seat;
-    private int runningTime;
+    private int movie_no;
+    private int userNo;
+    private Date date;
 
-    public ManagerMode(String movieName, int seat, int runningTime) {
+    public ManagerMode(String movieName, int seat, int movie_no) {
         this.movieName = movieName;
         this.seat = seat;
-        this.runningTime = runningTime;
+        this.movie_no = movie_no;
     }
 
-    @Override
+    public ManagerMode(String movieName, int seat) {
+        this.movieName = movieName;
+        this.seat = seat;
+    }
+
+    public ManagerMode(String movieName, int seat, int movie_no, int userNo, Date date) {
+        this.movieName = movieName;
+        this.seat = seat;
+        this.movie_no = movie_no;
+        this.userNo = userNo;
+        this.date = date;
+    }
+
+
     public String getMovieName() {
         return movieName;
     }
@@ -29,11 +46,27 @@ public class ManagerMode extends Moviekiosk{
         this.seat = seat;
     }
 
-    public int getRunningTime() {
-        return runningTime;
+    public int getMovie_no() {
+        return movie_no;
     }
 
-    public void setRunningTime(int runningTime) {
-        this.runningTime = runningTime;
+    public void setMovie_no(int movie_no) {
+        this.movie_no = movie_no;
+    }
+
+    public int getUserNo() {
+        return userNo;
+    }
+
+    public void setUserNo(int userNo) {
+        this.userNo = userNo;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
