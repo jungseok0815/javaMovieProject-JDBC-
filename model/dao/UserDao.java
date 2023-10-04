@@ -82,21 +82,24 @@ public class UserDao {
         int result = 0;
         PreparedStatement pstmt = null;
         String sql;
-        if (m2.getChecked().equals("yes")){
 
+        if (m2.getChecked().equals("yes")){
             sql ="Insert into cinema_user values(seq_user.nextval, ?,?,?,?,'USER',DEFAULT,'YSE')";
         }else{
 
             sql = "Insert into cinema_user values(seq_user.nextval, ?,?,?,?,'USER',DEFAULT,DEFAULT)";
         }
         try {
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, m2.getUserName());
             pstmt.setString(2, m2.getUserId());
             pstmt.setString(3, m2.getUserPwd());
             pstmt.setInt(4, m2.getAge());
+
+
             result = pstmt.executeUpdate();
-            System.out.println(result);
+
         }
         catch (SQLException e) {
             throw new RuntimeException(e);

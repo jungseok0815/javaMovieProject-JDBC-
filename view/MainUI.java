@@ -68,8 +68,7 @@ public class MainUI  {
         String userPwd = sc.next();
         System.out.print("나이 입력: ");
         int userAge = sc.nextInt();
-        sc.nextLine();
-        System.out.println("관리자 권한 부여 check(yes or no): ");
+        System.out.print("관리자 권한 부여 check(yes or no): ");
         String checked = sc.next();
 
         return new UserMode(userName,userId,userPwd,userAge,checked);

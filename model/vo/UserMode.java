@@ -16,12 +16,12 @@ public class UserMode {
         this.userPwd = userPwd;
     }
 
-    public UserMode(String userName, String userId, String userPwd, int age, String grade) {
+    public UserMode(String userName, String userId, String userPwd, int age, String checked) {
         this.userName = userName;
         this.userId = userId;
         this.userPwd = userPwd;
         this.age = age;
-        this.grade = grade;
+        this.checked = checked;
     }
 
     public UserMode(int userNo, String userName, String userId, String userPwd, int age, String grade) {
