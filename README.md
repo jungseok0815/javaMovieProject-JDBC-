@@ -5,7 +5,6 @@ CINEMA : 영화관을 생각하여 JDBC를 기반으로 관리자모드 유저�
 
 CINEMA테이블 
 
----------------------------------------------------유저테이블----------------------------------------------------
 create table cinema_user(
     user_no number primary key,
     user_name varchar2(20) not null,
@@ -23,13 +22,13 @@ create table cinema_user(
 CREATE SEQUENCE SEQ_USER
 NOCYCLE;
 select * from cinema_user;
-INSERT INTO user VALUES(SEQ_USER.NEXTVAL,'차정석','kil15978','kil79518',25,'BOSS',DEFAULT,DEFAULT);
-INSERT INTO user VALUES(SEQ_USER.NEXTVAL,'지온유','USER02','USER02',18,'USER',DEFAULT,DEFAULT);
-INSERT INTO user VALUES(SEQ_USER.NEXTVAL,'은수연','USER03','USER04',20,'USER',DEFAULT,'YSE');
-INSERT INTO user VALUES(SEQ_USER.NEXTVAL,'오태경','USER04','USER05',24,'MANGER',DEFAULT,DEFAULT);
-INSERT INTO user VALUES(SEQ_USER.NEXTVAL,'차정원','USER05','USER06',28,'MANGER',DEFAULT,DEFAULT);
+INSERT INTO cinema_user VALUES(SEQ_USER.NEXTVAL,'차정석','kil15978','kil79518',25,'BOSS',DEFAULT,DEFAULT);
+INSERT INTO cinema_user VALUES(SEQ_USER.NEXTVAL,'지온유','USER02','USER02',18,'USER',DEFAULT,DEFAULT);
+INSERT INTO cinema_user VALUES(SEQ_USER.NEXTVAL,'은수연','USER03','USER04',20,'USER',DEFAULT,'YSE');
+INSERT INTO cinema_user VALUES(SEQ_USER.NEXTVAL,'오태경','USER04','USER05',24,'MANGER',DEFAULT,DEFAULT);
+INSERT INTO cinema_user VALUES(SEQ_USER.NEXTVAL,'차정원','USER05','USER06',28,'MANGER',DEFAULT,DEFAULT);
 
- 
+
  --------------------------------------------------------영화 테이블-------------------------------------------------
 CREATE TABLE cinema_MOVIE(
     MV_NO NUMBER PRIMARY KEY,
@@ -37,8 +36,8 @@ CREATE TABLE cinema_MOVIE(
     MV_DATE DATE NOT NULL,
     MV_SRATNUM NUMBER NOT NULL,
     user_no NUMBER NOT NULL,
-    FOREIGN KEY (user_no) REFERENCES user(user_no)
-)
+    FOREIGN KEY (user_no) REFERENCES cinema_user(user_no)
+);
 CREATE SEQUENCE SEQ_MOVIE
 NOCYCLE;
 
@@ -55,36 +54,47 @@ INSERT INTO cinema_MOVIE VALUES(SEQ_MOVIE.NEXTVAL,'진격의 거인',sysdate,50,
 CREATE TABLE cinema_Reservation(
     RV_NO NUMBER PRIMARY KEY,
     user_no NUMBER NOT NULL,
-    FOREIGN KEY (user_no) REFERENCES user(user_no),
+    FOREIGN KEY (user_no) REFERENCES cinema_user(user_no),
     MV_NO NUMBER NOT NULL,
-    FOREIGN KEY (MV_NO) REFERENCES MOVIE(MV_NO)
-)
+    FOREIGN KEY (MV_NO) REFERENCES cinema_MOVIE(MV_NO)
+);
 
 CREATE SEQUENCE SEQ_Reservation
 NOCYCLE;
 
+
 INSERT INTO cinema_Reservation VALUES(SEQ_Reservation.NEXTVAL,2,3);
+INSERT INTO cinema_Reservation VALUES(SEQ_Reservation.NEXTVAL,3,5);
 INSERT INTO cinema_Reservation VALUES(SEQ_Reservation.NEXTVAL,3,5);
 INSERT INTO cinema_Reservation VALUES(SEQ_Reservation.NEXTVAL,3,5);
 
 CREATE OR REPLACE TRIGGER TRG_ADDRV
-AFTER INSERT ON Reservation
+AFTER INSERT ON cinema_Reservation
 FOR EACH ROW 
 BEGIN
-    UPDATE MOVIE
-    SET MV_SRATNUM = MV_SRATNUM-1;
+    UPDATE cinema_MOVIE
+    SET MV_SRATNUM = MV_SRATNUM-1
+    where mv_no = :new.mv_no;
 END;
 /
+
 
 CREATE OR REPLACE TRIGGER TRG_DELETERV
-BEFORE DELETE ON Reservation
+BEFORE DELETE ON cinema_Reservation
 FOR EACH ROW 
 BEGIN
-    UPDATE MOVIE
-    SET MV_SRATNUM = MV_SRATNUM+1;
+    UPDATE cinema_MOVIE
+    SET MV_SRATNUM = MV_SRATNUM+1
+    where mv_no = :OLD.mv_no;
 END;
 /
 
+
+select * from cinema_user;
+select * from cinema_movie;
+select * from cinema_reservation;
+
+COMMIT;
 
 
  
